@@ -22,5 +22,11 @@ omit = [
     "*/conftest.py", "*/test*", # omit test files
 ]
 
+[tool.pylint."messages control"]
+disable = [
+   "missing-module-docstring",
+   # Add any other checks you want to disable here
+]
+
 [tool.coverage.report]
 fail_under = 80
