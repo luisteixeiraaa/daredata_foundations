@@ -5,7 +5,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 description = "life expectancy project of the Foundations Learning Path"
 authors = [{name = "Luis Teixeira<luis.teixeira@ren.pt>"}]
-dependencies = ["pandas"]
+dependencies = ["pandas", "click"]
 
 [project.optional-dependencies]
 dev = ["pytest", "pylint", "pytest-cov", "toml"]
@@ -24,7 +24,7 @@ omit = [
 
 [tool.pylint."messages control"]
 disable = [
-   "missing-module-docstring",
+   "missing-module-docstring"
    # Add any other checks you want to disable here
 ]
 
