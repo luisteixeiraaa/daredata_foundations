@@ -36,7 +36,7 @@ jobs:
       # Step 4: Run pylint for static code analysis
       - name: Run pylint
         run: |
-          pylint life_expectancy.cleaning
+          pylint life_expectancy.cleaning --pylint-config-file pyproject.toml
 
       # Step 5: Run pytest for unit tests
       - name: Run pytest
