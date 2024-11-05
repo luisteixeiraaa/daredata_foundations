@@ -2,7 +2,6 @@ import pandas as pd
 import click
 
 
-
 def clean_data(country) -> None:
     '''
     Clean data function and export pt_life_expectancy data.
@@ -24,7 +23,10 @@ def clean_data(country) -> None:
 @click.command()
 @click.option('--country', '-r', default="PT")
 def main(country):
-    clean_data(country)
+    '''
+    Clean data function and export pt_life_expectancy data.
+    '''
+    clean_data(country)  # pylint: disable=no-value-for-parameter
 
 
 if __name__ == "__main__":  # pragma: no cover
