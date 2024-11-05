@@ -24,7 +24,8 @@ omit = [
 
 [tool.pylint."messages control"]
 disable = [
-   "missing-module-docstring"
+   "missing-module-docstring",
+   "no-value-for-parameter"
    # Add any other checks you want to disable here
 ]
 

@@ -26,8 +26,8 @@ def main(country):
     '''
     Clean data function and export pt_life_expectancy data.
     '''
-    clean_data(country)  # pylint: disable=no-value-for-parameter
+    clean_data(country)
 
 
 if __name__ == "__main__":  # pragma: no cover
-    main()
+    main()  # pylint: disable=no-value-for-parameter
