@@ -11,7 +11,6 @@ def clean_data(country) -> None:
     life_expectancy = pd.melt(life_expectancy, id_vars=life_expectancy.columns[0],
                               value_vars=life_expectancy.columns[1:],
                               var_name="year")
-    
     heads = ['unit', 'sex', 'age', 'region']
     life_expectancy[heads] = life_expectancy.iloc[:, 0].str.split(r'[,\s]+', expand=True)
     life_expectancy.drop(columns=life_expectancy.columns[0], axis=1, inplace=True)
