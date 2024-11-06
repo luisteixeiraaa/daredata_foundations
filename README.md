@@ -1,5 +1,7 @@
 # Foundations Learning Path Assignments
 
+[![CI Pipeline](https://github.com/luisteixeiraaa/daredata_foundations/actions/workflows/ci.yml/badge.svg)](https://github.com/luisteixeiraaa/daredata_foundations/actions/workflows/ci.yml)
+
 ## Introduction
 
 We are going to be using this project throughout the course.
