@@ -3,12 +3,13 @@ import click
 
 from life_expectancy.data import load_data, save_data
 from life_expectancy.cleaning import clean_data
+from life_expectancy.region import Region
 
 DATA_DIR = Path(__file__).parent / "data"
 
 
 @click.command()
-@click.option("--country", "-c", default="EU")
+@click.option("--country", "-c", default="EU", type=lambda x: Region[x])
 def main(country):
     """
     Clean data and export country_life_expectancy.
