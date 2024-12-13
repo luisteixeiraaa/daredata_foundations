@@ -1,5 +1,6 @@
 from pathlib import Path
 import pandas as pd
+from life_expectancy.region import Region
 
 
 def load_data(dir: Path) -> pd.DataFrame:  # pylint: disable=W0622
@@ -13,24 +14,22 @@ def load_data(dir: Path) -> pd.DataFrame:  # pylint: disable=W0622
 
 
 def save_data(
-    dir: Path, country: str, life_expectancy: pd.DataFrame
+    dir: Path, country: Region, life_expectancy: pd.DataFrame
 ) -> None:  # pylint: disable=W0622
     """Save cleaned life expectancy data by country.
 
     :param Path dir: save directory
-    :param str country: cli selected country
+    :param Region country: cli selected country
     :param pd.DataFrame life_expectancy_country: tranformed dataframe by country.
     """
-    if country == "EU":
+    if country.value == "EU":
         life_expectancy_country = life_expectancy.reset_index(drop=True)
     else:
         life_expectancy_country = life_expectancy[
-            life_expectancy["region"] == country
-        ].reset_index(
-            drop=True
-        )  # pylint: disable=line-too-long
-
+            life_expectancy["region"] == country.value
+        ].reset_index(drop=True)
     life_expectancy_country.to_csv(
-        dir / f"{country.lower()}_life_expectancy.csv",  # pylint: disable=line-too-long
+        dir
+        / f"{country.value.lower()}_life_expectancy.csv",  # pylint: disable=line-too-long
         index=False,
     )
