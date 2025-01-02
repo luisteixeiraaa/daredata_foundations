@@ -1,16 +1,33 @@
 from pathlib import Path
 import pandas as pd
 from life_expectancy.region import Region
+from life_expectancy.load_strategy import LoadStrategy
 
 
-def load_data(dir: Path) -> pd.DataFrame:  # pylint: disable=W0622
-    """Load raw data from eu_life_expectancy_raw.tsv file.
+class DataLoader:
+    def __init__(self, strategy: LoadStrategy):
+        self.strategy = strategy
+
+    def set_strategy(self, strategy: LoadStrategy):
+        """Set a different loading strategy as an option."""
+        self.strategy = strategy
+
+    def load(self, file_path: Path) -> pd.DataFrame:
+        """Delegate loading to the strategy."""
+        return self.strategy.load(file_path)
+
+
+def load_data(
+    dir: Path, strategy: LoadStrategy
+) -> pd.DataFrame:  # pylint: disable=W0622
+    """Set the loading strategy
 
     :param Path dir: load directory
     :return pd.DataFrame: return data as dataframe.
     """
-    life_expectancy = pd.read_csv(dir / "eu_life_expectancy_raw.tsv", sep="\t")
-    return life_expectancy
+
+    loader = DataLoader(strategy)
+    return loader.load(dir)
 
 
 def save_data(

@@ -3,15 +3,23 @@ import pandas as pd
 
 from life_expectancy.data import load_data, save_data
 from life_expectancy.region import Region
+from life_expectancy.load_strategy import LoadTSV, LoadJSON
 
 from . import FIXTURES_DIR
 
 
-def test_load_life_expectancy_data(eu_life_expectancy_raw):
+def test_load_life_expectancy_tsv_data(eu_life_expectancy_raw):
     """Run the `load_data` function and compare the output to the expected output"""
 
-    loaded_data = load_data(FIXTURES_DIR)
+    loaded_data = load_data(FIXTURES_DIR, LoadTSV())
     pd.testing.assert_frame_equal(loaded_data, eu_life_expectancy_raw)
+
+
+def test_load_life_expectancy_json_data(eurostat_life_expect_raw):
+    """Run the `load_data` function and compare the output to the expected output"""
+
+    loaded_data = load_data(FIXTURES_DIR, LoadJSON())
+    pd.testing.assert_frame_equal(loaded_data, eurostat_life_expect_raw)
 
 
 @patch("life_expectancy.data.pd.DataFrame.to_csv")

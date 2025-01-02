@@ -1,8 +1,8 @@
 import pandas as pd
 
 
-def clean_data(life_expectancy: pd.DataFrame) -> pd.DataFrame:
-    """ETL process and select data by country.
+def clean_data_tsv(life_expectancy: pd.DataFrame) -> pd.DataFrame:
+    """ETL process and select data by country tsv specific.
 
     :return pd.DataFrame: processed dataframe by country.
     """
@@ -24,4 +24,17 @@ def clean_data(life_expectancy: pd.DataFrame) -> pd.DataFrame:
     life_expectancy = life_expectancy[life_expectancy["value"].notna()]
     life_expectancy = life_expectancy[heads + ["year", "value"]]
 
+    return life_expectancy
+
+
+def clean_data_json(life_expectancy: pd.DataFrame) -> pd.DataFrame:
+    """ETL process and select data by country json specific.
+
+    :return pd.DataFrame: processed dataframe by country.
+    """
+
+    heads = ["unit", "sex", "age", "country", "year", "life_expectancy"]
+    life_expectancy = life_expectancy[heads].rename(
+        columns={"country": "region", "life_expectancy": "value"}
+    )
     return life_expectancy

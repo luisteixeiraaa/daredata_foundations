@@ -13,6 +13,12 @@ def eu_life_expectancy_raw() -> pd.DataFrame:
 
 
 @pytest.fixture(scope="session")
+def eurostat_life_expect_raw() -> pd.DataFrame:
+    """Fixture to load the input life expectancy raw data"""
+    return pd.read_json(FIXTURES_DIR / "eurostat_life_expect.json")
+
+
+@pytest.fixture(scope="session")
 def eu_life_expectancy_expected() -> pd.DataFrame:
     """Fixture to load the eu expected output of the cleaning script"""
     return pd.read_csv(FIXTURES_DIR / "eu_life_expectancy_expected.csv")
